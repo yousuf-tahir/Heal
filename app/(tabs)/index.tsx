@@ -1,17 +1,53 @@
-import { Link } from 'expo-router';
-import React from 'react';
-import { Text, View } from 'react-native';
+// app/index.tsx (This is your Home screen)
+import { useRouter } from "expo-router";
+import React from "react";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+export default function HomeScreen() {
+  const router = useRouter();
 
-const Home = () => {
+  const handleNavigateToCardPage = () => {
+    router.push("/cards/cards");
+  };
+
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text style={{ fontSize: 24 }}>Welcome to the App!</Text>
-      <Link href={"/(tabs)/TaskManager"}
-       style={{ marginTop: 20, fontSize: 18, color: 'blue' }}>
-        Go to Task Manager
-      </Link>
+    <View style={styles.container}>
+      {/* 🔥 Navbar-like Header */}
+      <View style={styles.navbar}>
+        <TouchableOpacity onPress={handleNavigateToCardPage}>
+          <Text style={styles.navItem}>CardPage</Text>
+        </TouchableOpacity>
+      </View>
+
+      {/* 🔥 Home content */}
+      <View style={styles.content}>
+        <Text style={styles.title}>Welcome to the Home Screen </Text>
+      </View>
     </View>
   );
-};
+}
 
-export default Home;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  navbar: {
+    height: 60,
+    backgroundColor: "#6200ea",
+    justifyContent: "center",
+    paddingHorizontal: 16,
+  },
+  navItem: {
+    color: "white",
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+  content: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
+  },
+});
