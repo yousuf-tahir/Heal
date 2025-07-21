@@ -1,3 +1,4 @@
+import CardList from '@/components/cards/CardList';
 import GreetingCard from '@/components/cards/GreetingCard';
 import ProfileCard from '@/components/cards/ProfileCard';
 import React from 'react';
@@ -8,7 +9,11 @@ const CardsPage = () => {
     <ScrollView contentContainerStyle={{ padding: 16 }}>
       <GreetingCard message="Welcome to the Dashboard" />
       <ProfileCard />
+      <br/>
+      <h2>Card List Component</h2>
+       <CardList/>
     </ScrollView>
+   
   );
 };
 

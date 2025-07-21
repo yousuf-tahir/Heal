@@ -1,12 +1,15 @@
 // app/index.tsx (This is your Home screen)
 import { useRouter } from "expo-router";
-import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+
 export default function HomeScreen() {
   const router = useRouter();
 
   const handleNavigateToCardPage = () => {
-    router.push("/cards/cards");
+    router.push("/cards" as any);
+  };
+  const handleNavigateToSignUpPage = () => {
+    router.push("/signup" as any);
   };
 
   return (
@@ -15,6 +18,9 @@ export default function HomeScreen() {
       <View style={styles.navbar}>
         <TouchableOpacity onPress={handleNavigateToCardPage}>
           <Text style={styles.navItem}>CardPage</Text>
+        </TouchableOpacity>
+         <TouchableOpacity onPress={handleNavigateToSignUpPage}>
+          <Text style={styles.navItem}>SignUp Page</Text>
         </TouchableOpacity>
       </View>
 

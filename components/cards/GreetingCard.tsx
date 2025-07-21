@@ -35,7 +35,7 @@ const GreetingCard = ({ message }: { message: string }) => {
         {message}
       </Text>
       <Pressable style={styles.button} onPress={toggleTheme}>
-        <Text style={styles.buttonText}>Toggle Theme</Text>
+        <Text style={styles.buttonText}>Dark Mode</Text>
       </Pressable>
     </Animated.View>
   );
