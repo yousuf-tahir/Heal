@@ -1,7 +1,7 @@
 import CardList from '@/components/cards/CardList';
 import GreetingCard from '@/components/cards/GreetingCard';
 import ProfileCard from '@/components/cards/ProfileCard';
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect } from 'react';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
@@ -17,21 +17,28 @@ export const ThemeContext = createContext<ThemeContextType>({
 });
 
 const CardsPage: React.FC = () => {
-  const [theme, setTheme] = useState<Theme>('light');
+  const [theme, setTheme] = React.useState<Theme>('light');
 
   const toggleTheme = () => {
     setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
   };
 
+  // Fade-in animation for the entire app
+  const opacity = useSharedValue(0);
+  useEffect(() => {
+    opacity.value = withTiming(1, { duration: 500 }); // Fade in over 500ms
+  }, []);
+
   // Animated background color for the container
   const backgroundColor = useSharedValue(theme === 'light' ? '#f0f0f0' : '#1c2526');
-  React.useEffect(() => {
+  useEffect(() => {
     backgroundColor.value = withTiming(theme === 'light' ? '#f0f0f0' : '#1c2526', { duration: 300 });
   }, [theme]);
 
   const animatedStyle = useAnimatedStyle(() => ({
     backgroundColor: backgroundColor.value,
     flex: 1,
+    opacity: opacity.value,
   }));
 
   return (
